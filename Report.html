@@ -13077,7 +13077,12 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PSTAT-176/276-Project">PSTAT 176/276 Project<a class="anchor-link" href="#PSTAT-176/276-Project">&#182;</a></h1>
+<h1 id="PSTAT-176/276-Project">PSTAT 176/276 Project<a class="anchor-link" href="#PSTAT-176/276-Project">&#182;</a></h1><p>Univa Song<br>
+Ziwei Zhang<br>
+Frank Li<br>
+Lingxiao Zhou<br>
+Kyle Guan</p>
+
 </div>
 </div>
 </div>
@@ -13096,7 +13101,6 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip install --upgrade pandas</span>
 <span class="c1"># !pip install tqdm</span>
 <span class="c1"># !pip install altair</span>
-<span class="c1">#! pip install progressbar</span>
 </pre></div>
 
     </div>
@@ -13477,7 +13481,7 @@ The continuous dividend yield is: 0.0248
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Simulate Path</span>
@@ -13503,8 +13507,8 @@ The continuous dividend yield is: 0.0248
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>American Put Option price: 31.42291468699367
-Variance of payoffs: 836.6320112823144
+<pre>American Put Option price: 42.786322310527375
+Variance of payoffs: 1229.0835495488384
 </pre>
 </div>
 </div>
@@ -13516,14 +13520,14 @@ Variance of payoffs: 836.6320112823144
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Estimated-price-with-control-variates">Estimated price with control variates<a class="anchor-link" href="#Estimated-price-with-control-variates">&#182;</a></h3><p>We estimate the price of European put option with the same strike price using the same path and compute true price by Black-Scholes formula. Then we apply the control variates method to get a new estimated price of the American put option.</p>
+<h3 id="Estimated-price-with-control-variates">Estimated price with control variates<a class="anchor-link" href="#Estimated-price-with-control-variates">&#182;</a></h3><p>We estimate the price of European put option with the same strike price using the same path and compute the true price by Black-Scholes formula. Then we apply the control variates method to get a new estimated price of the American put option.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compute the true price of the American put by using the Black-Scholes model </span>
@@ -13536,7 +13540,7 @@ Variance of payoffs: 836.6320112823144
 
 <span class="c1"># apply the ContVariate function</span>
 <span class="n">y_hat</span><span class="p">,</span><span class="n">y_hatVar</span> <span class="o">=</span> <span class="n">ContVariate</span><span class="p">(</span><span class="n">AmePut</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">EurPut</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">truePrice</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated American put Price with control variates:&quot;</span><span class="p">,</span><span class="n">y_hat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated American Put price with control variates:&quot;</span><span class="p">,</span><span class="n">y_hat</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13554,8 +13558,8 @@ Variance of payoffs: 836.6320112823144
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>True European Put Price: 33.60733581303151
-Estimated European Put Option price: 30.628263080872546
-Estimated American put Price with control variates: 33.714835846202895
+Estimated European Put Option price: 43.4855873186632
+Estimated American Put price with control variates: 35.68676160339048
 </pre>
 </div>
 </div>
@@ -13575,7 +13579,7 @@ Estimated American put Price with control variates: 33.714835846202895
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Variance-Comparison">Variance Comparison<a class="anchor-link" href="#Variance-Comparison">&#182;</a></h3><p>If we do not use control variates, the variance of our estimator $\hat Y$, mean of all the payoffs, is  $$Var(\hat Y) = \frac{\sigma^2_Y}{n}$$ where $\sigma^2_Y$ is the variance of payoffs and n is the number of paths simulated. According to results above, we can compute that the variance of our estimator is about 9.7. This is a relatively large number.</p>
+<h3 id="Variance-Comparison">Variance Comparison<a class="anchor-link" href="#Variance-Comparison">&#182;</a></h3><p>If we do not use control variates, the variance of our estimator $\hat Y$, mean of all the payoffs, is  $$Var(\hat Y) = \frac{\sigma^2_Y}{n}$$ where $\sigma^2_Y$ is the variance of payoffs and n is the number of paths simulated. According to results above, we can compute that the variance of our estimator is about 8.4. This is a relatively large number.</p>
 <p>Theoratically, the variance of the estimator $\hat Y^*$ computed by the control variates is $$Var(\hat Y^*) = \frac{\sigma^2_Y}{n}[1-corr^2(X,Y)]$$ where X is the payoffs of European put option and Y is the payoffs of American put option. Since $0 \leq corr^2(X,Y) \leq 1$, the estimator computed with control variates has smaller variance.</p>
 <p>We compute the estimated prices multiple times to verify that the variance of estimator computed by control variates is smaller than that of estimator computed without control variates. We use monthly data in this part to shorten the running time of the code.</p>
 
@@ -13618,7 +13622,7 @@ Estimated American put Price with control variates: 33.714835846202895
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>50 runs: 100%|██████████| 50/50 [04:56&lt;00:00,  5.92s/it]
+<pre>50 runs: 100%|██████████| 50/50 [04:22&lt;00:00,  5.25s/it]
 </pre>
 </div>
 </div>
@@ -13629,7 +13633,7 @@ Estimated American put Price with control variates: 33.714835846202895
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13652,13 +13656,13 @@ Estimated American put Price with control variates: 33.714835846202895
     <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;Method:N&#39;</span><span class="p">)</span>
 <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Histogram of estimated prices (15 runs)&#39;</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Histogram of estimated prices (50 runs)&#39;</span>
 <span class="p">)</span>
 
 <span class="n">source2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">AmerP</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">:</span><span class="s1">&#39;Without&#39;</span><span class="p">}),</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">AmerP_CV</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">:</span><span class="s1">&#39;With&#39;</span><span class="p">})])</span>
 
 <span class="n">bars</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source2</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
-    <span class="n">width</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Step</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># controls width of bar</span>
+    <span class="n">width</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Step</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>  <span class="c1"># controls width of bar</span>
 <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;method:N&#39;</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;mean(price):Q&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean price&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">40</span><span class="p">))),</span>
@@ -13671,7 +13675,7 @@ Estimated American put Price with control variates: 33.714835846202895
 <span class="p">)</span>
 
 <span class="n">Chart2</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">error_bars</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">source2</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean of estimated prices (15 runs)&#39;</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean of estimated prices (50 runs)&#39;</span>
 <span class="p">)</span>
 
 <span class="n">Chart2</span> <span class="o">|</span> <span class="n">Chart1</span>
@@ -13687,18 +13691,18 @@ Estimated American put Price with control variates: 33.714835846202895
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-8b120f7e7ef34a93b1f8815f5c5f65b2"></div>
+<div id="altair-viz-0767922f28534b97987d9fab691a84c9"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-8b120f7e7ef34a93b1f8815f5c5f65b2") {
-      outputDiv = document.getElementById("altair-viz-8b120f7e7ef34a93b1f8815f5c5f65b2");
+    if (outputDiv.id !== "altair-viz-0767922f28534b97987d9fab691a84c9") {
+      outputDiv = document.getElementById("altair-viz-0767922f28534b97987d9fab691a84c9");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -13740,7 +13744,7 @@ Estimated American put Price with control variates: 33.714835846202895
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"layer": [{"mark": "bar", "encoding": {"x": {"type": "nominal", "field": "method"}, "y": {"type": "quantitative", "aggregate": "mean", "field": "price", "scale": {"domain": [25, 40]}, "title": "Mean price"}}, "width": {"step": 100}}, {"mark": {"type": "errorbar", "extent": "ci"}, "encoding": {"x": {"type": "nominal", "field": "method"}, "y": {"type": "quantitative", "field": "price"}}}], "data": {"name": "data-e3d001fffa57567d499355499da087cf"}, "title": "Mean of estimated prices (15 runs)"}, {"data": {"name": "data-f5bc0f7ec3a17ecd174731853ffb82fe"}, "mark": {"type": "area", "interpolate": "step", "opacity": 0.3}, "encoding": {"color": {"type": "nominal", "field": "Method"}, "x": {"type": "quantitative", "bin": {"maxbins": 10}, "field": "Estimated price"}, "y": {"type": "quantitative", "aggregate": "count", "stack": null}}, "title": "Histogram of estimated prices (15 runs)", "transform": [{"fold": ["Without Control Variate", "With Control Variate"], "as": ["Method", "Estimated price"]}]}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-e3d001fffa57567d499355499da087cf": [{"price": 39.08922229201184, "method": "Without"}, {"price": 34.51654849561096, "method": "Without"}, {"price": 31.32950666594797, "method": "Without"}, {"price": 37.907277621792765, "method": "Without"}, {"price": 35.218703012245825, "method": "Without"}, {"price": 31.82797695354163, "method": "Without"}, {"price": 39.89852635984489, "method": "Without"}, {"price": 40.853585513060004, "method": "Without"}, {"price": 35.66404574836852, "method": "Without"}, {"price": 38.77330008668896, "method": "Without"}, {"price": 35.96642272979348, "method": "Without"}, {"price": 32.20830220372959, "method": "Without"}, {"price": 39.64558557689879, "method": "Without"}, {"price": 37.44963926840225, "method": "Without"}, {"price": 32.645707609689154, "method": "Without"}, {"price": 30.607483874179664, "method": "Without"}, {"price": 36.63480625207108, "method": "Without"}, {"price": 34.548139945319406, "method": "Without"}, {"price": 37.54842429944547, "method": "Without"}, {"price": 30.874133658732376, "method": "Without"}, {"price": 29.592559661504843, "method": "Without"}, {"price": 37.89475826872737, "method": "Without"}, {"price": 37.08380530361055, "method": "Without"}, {"price": 30.884330510609853, "method": "Without"}, {"price": 39.34069278963323, "method": "Without"}, {"price": 35.35483058022223, "method": "Without"}, {"price": 30.25081246152179, "method": "Without"}, {"price": 33.30783788289704, "method": "Without"}, {"price": 37.58277623538937, "method": "Without"}, {"price": 34.96187407068756, "method": "Without"}, {"price": 40.05735680311763, "method": "Without"}, {"price": 35.74116428961197, "method": "Without"}, {"price": 34.8327574988378, "method": "Without"}, {"price": 43.56972747664126, "method": "Without"}, {"price": 36.245378826996536, "method": "Without"}, {"price": 43.51340920524584, "method": "Without"}, {"price": 38.08666480805851, "method": "Without"}, {"price": 35.439238846720315, "method": "Without"}, {"price": 37.065176795785675, "method": "Without"}, {"price": 34.10570884873845, "method": "Without"}, {"price": 36.49197614619317, "method": "Without"}, {"price": 33.199964551131416, "method": "Without"}, {"price": 38.07491750994788, "method": "Without"}, {"price": 37.21102865692173, "method": "Without"}, {"price": 35.24444103168953, "method": "Without"}, {"price": 31.829594631378423, "method": "Without"}, {"price": 34.33624849381682, "method": "Without"}, {"price": 36.52715901949885, "method": "Without"}, {"price": 34.88798654656418, "method": "Without"}, {"price": 29.958188439219622, "method": "Without"}, {"price": 38.06998455357083, "method": "With"}, {"price": 33.601301839119216, "method": "With"}, {"price": 33.31494024559401, "method": "With"}, {"price": 33.498645128020215, "method": "With"}, {"price": 33.939572942357565, "method": "With"}, {"price": 34.8932426171034, "method": "With"}, {"price": 33.73145602122278, "method": "With"}, {"price": 34.69718514823373, "method": "With"}, {"price": 32.37211296728844, "method": "With"}, {"price": 35.79144362467862, "method": "With"}, {"price": 32.78395303238184, "method": "With"}, {"price": 32.34356173952915, "method": "With"}, {"price": 35.91096937617232, "method": "With"}, {"price": 33.998780299746436, "method": "With"}, {"price": 33.258028158965224, "method": "With"}, {"price": 32.16263459387668, "method": "With"}, {"price": 31.719128523147845, "method": "With"}, {"price": 32.282302509451, "method": "With"}, {"price": 35.62451304610585, "method": "With"}, {"price": 32.398049296833626, "method": "With"}, {"price": 33.3013842656701, "method": "With"}, {"price": 32.08663521967526, "method": "With"}, {"price": 32.85757283743124, "method": "With"}, {"price": 33.418797575393185, "method": "With"}, {"price": 33.077648779037716, "method": "With"}, {"price": 33.08382257792969, "method": "With"}, {"price": 30.694510444019652, "method": "With"}, {"price": 32.722945987118294, "method": "With"}, {"price": 35.441983984489696, "method": "With"}, {"price": 34.69189484663968, "method": "With"}, {"price": 34.241303584868646, "method": "With"}, {"price": 33.35699749021193, "method": "With"}, {"price": 33.64393417446818, "method": "With"}, {"price": 36.86785161130888, "method": "With"}, {"price": 33.764735232975525, "method": "With"}, {"price": 33.80446200885618, "method": "With"}, {"price": 33.00551749266042, "method": "With"}, {"price": 33.3793353523761, "method": "With"}, {"price": 33.2967398050867, "method": "With"}, {"price": 33.743992939719014, "method": "With"}, {"price": 35.73736605890784, "method": "With"}, {"price": 33.46255758221517, "method": "With"}, {"price": 34.245333735389146, "method": "With"}, {"price": 31.755021783636316, "method": "With"}, {"price": 35.22608650280874, "method": "With"}, {"price": 31.822784974392313, "method": "With"}, {"price": 33.117158658493494, "method": "With"}, {"price": 34.10824792707998, "method": "With"}, {"price": 33.8610018951003, "method": "With"}, {"price": 33.234541171393204, "method": "With"}], "data-f5bc0f7ec3a17ecd174731853ffb82fe": [{"Without Control Variate": 39.08922229201184, "With Control Variate": 38.06998455357083}, {"Without Control Variate": 34.51654849561096, "With Control Variate": 33.601301839119216}, {"Without Control Variate": 31.32950666594797, "With Control Variate": 33.31494024559401}, {"Without Control Variate": 37.907277621792765, "With Control Variate": 33.498645128020215}, {"Without Control Variate": 35.218703012245825, "With Control Variate": 33.939572942357565}, {"Without Control Variate": 31.82797695354163, "With Control Variate": 34.8932426171034}, {"Without Control Variate": 39.89852635984489, "With Control Variate": 33.73145602122278}, {"Without Control Variate": 40.853585513060004, "With Control Variate": 34.69718514823373}, {"Without Control Variate": 35.66404574836852, "With Control Variate": 32.37211296728844}, {"Without Control Variate": 38.77330008668896, "With Control Variate": 35.79144362467862}, {"Without Control Variate": 35.96642272979348, "With Control Variate": 32.78395303238184}, {"Without Control Variate": 32.20830220372959, "With Control Variate": 32.34356173952915}, {"Without Control Variate": 39.64558557689879, "With Control Variate": 35.91096937617232}, {"Without Control Variate": 37.44963926840225, "With Control Variate": 33.998780299746436}, {"Without Control Variate": 32.645707609689154, "With Control Variate": 33.258028158965224}, {"Without Control Variate": 30.607483874179664, "With Control Variate": 32.16263459387668}, {"Without Control Variate": 36.63480625207108, "With Control Variate": 31.719128523147845}, {"Without Control Variate": 34.548139945319406, "With Control Variate": 32.282302509451}, {"Without Control Variate": 37.54842429944547, "With Control Variate": 35.62451304610585}, {"Without Control Variate": 30.874133658732376, "With Control Variate": 32.398049296833626}, {"Without Control Variate": 29.592559661504843, "With Control Variate": 33.3013842656701}, {"Without Control Variate": 37.89475826872737, "With Control Variate": 32.08663521967526}, {"Without Control Variate": 37.08380530361055, "With Control Variate": 32.85757283743124}, {"Without Control Variate": 30.884330510609853, "With Control Variate": 33.418797575393185}, {"Without Control Variate": 39.34069278963323, "With Control Variate": 33.077648779037716}, {"Without Control Variate": 35.35483058022223, "With Control Variate": 33.08382257792969}, {"Without Control Variate": 30.25081246152179, "With Control Variate": 30.694510444019652}, {"Without Control Variate": 33.30783788289704, "With Control Variate": 32.722945987118294}, {"Without Control Variate": 37.58277623538937, "With Control Variate": 35.441983984489696}, {"Without Control Variate": 34.96187407068756, "With Control Variate": 34.69189484663968}, {"Without Control Variate": 40.05735680311763, "With Control Variate": 34.241303584868646}, {"Without Control Variate": 35.74116428961197, "With Control Variate": 33.35699749021193}, {"Without Control Variate": 34.8327574988378, "With Control Variate": 33.64393417446818}, {"Without Control Variate": 43.56972747664126, "With Control Variate": 36.86785161130888}, {"Without Control Variate": 36.245378826996536, "With Control Variate": 33.764735232975525}, {"Without Control Variate": 43.51340920524584, "With Control Variate": 33.80446200885618}, {"Without Control Variate": 38.08666480805851, "With Control Variate": 33.00551749266042}, {"Without Control Variate": 35.439238846720315, "With Control Variate": 33.3793353523761}, {"Without Control Variate": 37.065176795785675, "With Control Variate": 33.2967398050867}, {"Without Control Variate": 34.10570884873845, "With Control Variate": 33.743992939719014}, {"Without Control Variate": 36.49197614619317, "With Control Variate": 35.73736605890784}, {"Without Control Variate": 33.199964551131416, "With Control Variate": 33.46255758221517}, {"Without Control Variate": 38.07491750994788, "With Control Variate": 34.245333735389146}, {"Without Control Variate": 37.21102865692173, "With Control Variate": 31.755021783636316}, {"Without Control Variate": 35.24444103168953, "With Control Variate": 35.22608650280874}, {"Without Control Variate": 31.829594631378423, "With Control Variate": 31.822784974392313}, {"Without Control Variate": 34.33624849381682, "With Control Variate": 33.117158658493494}, {"Without Control Variate": 36.52715901949885, "With Control Variate": 34.10824792707998}, {"Without Control Variate": 34.88798654656418, "With Control Variate": 33.8610018951003}, {"Without Control Variate": 29.958188439219622, "With Control Variate": 33.234541171393204}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"layer": [{"mark": "bar", "encoding": {"x": {"type": "nominal", "field": "method"}, "y": {"type": "quantitative", "aggregate": "mean", "field": "price", "scale": {"domain": [25, 40]}, "title": "Mean price"}}, "width": {"step": 80}}, {"mark": {"type": "errorbar", "extent": "ci"}, "encoding": {"x": {"type": "nominal", "field": "method"}, "y": {"type": "quantitative", "field": "price"}}}], "data": {"name": "data-924f4a4cdc033cb1aca682f33d21974d"}, "title": "Mean of estimated prices (50 runs)"}, {"data": {"name": "data-bbcec8d0192c8e2902af6abd2b414f74"}, "mark": {"type": "area", "interpolate": "step", "opacity": 0.3}, "encoding": {"color": {"type": "nominal", "field": "Method"}, "x": {"type": "quantitative", "bin": {"maxbins": 10}, "field": "Estimated price"}, "y": {"type": "quantitative", "aggregate": "count", "stack": null}}, "title": "Histogram of estimated prices (50 runs)", "transform": [{"fold": ["Without Control Variate", "With Control Variate"], "as": ["Method", "Estimated price"]}]}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-924f4a4cdc033cb1aca682f33d21974d": [{"price": 35.09246497963993, "method": "Without"}, {"price": 32.844865874262176, "method": "Without"}, {"price": 34.19776212932582, "method": "Without"}, {"price": 36.414332537943764, "method": "Without"}, {"price": 30.77439687502416, "method": "Without"}, {"price": 37.97571043787818, "method": "Without"}, {"price": 32.42262572412667, "method": "Without"}, {"price": 36.080556019432436, "method": "Without"}, {"price": 37.34622724630077, "method": "Without"}, {"price": 31.978649255588117, "method": "Without"}, {"price": 36.28831019493484, "method": "Without"}, {"price": 34.03901407313906, "method": "Without"}, {"price": 33.1136130229818, "method": "Without"}, {"price": 37.49199156735712, "method": "Without"}, {"price": 33.9668045097395, "method": "Without"}, {"price": 38.64821919465603, "method": "Without"}, {"price": 34.55910594906214, "method": "Without"}, {"price": 32.43657266265261, "method": "Without"}, {"price": 30.964262801240075, "method": "Without"}, {"price": 38.618612123051534, "method": "Without"}, {"price": 36.883896890454146, "method": "Without"}, {"price": 36.41915158591698, "method": "Without"}, {"price": 34.05531720982455, "method": "Without"}, {"price": 38.57085273798827, "method": "Without"}, {"price": 36.37677516583719, "method": "Without"}, {"price": 38.38055198480323, "method": "Without"}, {"price": 35.64340474370124, "method": "Without"}, {"price": 36.28213647146293, "method": "Without"}, {"price": 35.976765340556824, "method": "Without"}, {"price": 36.326278870536946, "method": "Without"}, {"price": 37.57120217062598, "method": "Without"}, {"price": 34.841292001672535, "method": "Without"}, {"price": 40.91289037201469, "method": "Without"}, {"price": 29.037458579520617, "method": "Without"}, {"price": 34.48541817790693, "method": "Without"}, {"price": 24.522055682774965, "method": "Without"}, {"price": 33.54558271600972, "method": "Without"}, {"price": 33.67091366331344, "method": "Without"}, {"price": 33.99806726559409, "method": "Without"}, {"price": 36.02510703774191, "method": "Without"}, {"price": 33.49779699824384, "method": "Without"}, {"price": 34.02095297017948, "method": "Without"}, {"price": 31.23054737522261, "method": "Without"}, {"price": 34.41357550468768, "method": "Without"}, {"price": 30.983346745069166, "method": "Without"}, {"price": 37.974562974128084, "method": "Without"}, {"price": 29.354571691059, "method": "Without"}, {"price": 32.133080441063804, "method": "Without"}, {"price": 32.18557440149992, "method": "Without"}, {"price": 36.7832458575032, "method": "Without"}, {"price": 34.08696466289435, "method": "With"}, {"price": 34.041036453928506, "method": "With"}, {"price": 35.828684144859366, "method": "With"}, {"price": 34.41957924549039, "method": "With"}, {"price": 33.08970066757973, "method": "With"}, {"price": 34.01445972942923, "method": "With"}, {"price": 33.60305748431488, "method": "With"}, {"price": 33.67320757204544, "method": "With"}, {"price": 32.14203379400035, "method": "With"}, {"price": 31.28699130921425, "method": "With"}, {"price": 33.70170038128322, "method": "With"}, {"price": 33.29895045350323, "method": "With"}, {"price": 32.53205481746299, "method": "With"}, {"price": 35.66082634449867, "method": "With"}, {"price": 33.444839841464436, "method": "With"}, {"price": 35.278311034491466, "method": "With"}, {"price": 34.17447241101918, "method": "With"}, {"price": 33.59298901763306, "method": "With"}, {"price": 32.822993279028125, "method": "With"}, {"price": 33.595162103589, "method": "With"}, {"price": 33.59838204870968, "method": "With"}, {"price": 34.55296279603431, "method": "With"}, {"price": 33.32489172575911, "method": "With"}, {"price": 35.26776991261477, "method": "With"}, {"price": 32.50686057845565, "method": "With"}, {"price": 35.60946029574713, "method": "With"}, {"price": 32.84672917433622, "method": "With"}, {"price": 34.997957135989964, "method": "With"}, {"price": 35.33155249392921, "method": "With"}, {"price": 32.33800381474248, "method": "With"}, {"price": 34.15310209679571, "method": "With"}, {"price": 34.024642299921, "method": "With"}, {"price": 33.136741173560104, "method": "With"}, {"price": 32.55470563023791, "method": "With"}, {"price": 36.17308199015817, "method": "With"}, {"price": 31.02985121123706, "method": "With"}, {"price": 34.00612820287593, "method": "With"}, {"price": 31.00983887006412, "method": "With"}, {"price": 33.32566702675824, "method": "With"}, {"price": 34.690567758653906, "method": "With"}, {"price": 34.30681366689716, "method": "With"}, {"price": 32.174286592392114, "method": "With"}, {"price": 30.315378087311903, "method": "With"}, {"price": 34.30727719885329, "method": "With"}, {"price": 33.296029067217646, "method": "With"}, {"price": 34.32582919100141, "method": "With"}, {"price": 32.274267320456595, "method": "With"}, {"price": 32.79930061683475, "method": "With"}, {"price": 34.56286740368031, "method": "With"}, {"price": 32.72586488318433, "method": "With"}], "data-bbcec8d0192c8e2902af6abd2b414f74": [{"Without Control Variate": 35.09246497963993, "With Control Variate": 34.08696466289435}, {"Without Control Variate": 32.844865874262176, "With Control Variate": 34.041036453928506}, {"Without Control Variate": 34.19776212932582, "With Control Variate": 35.828684144859366}, {"Without Control Variate": 36.414332537943764, "With Control Variate": 34.41957924549039}, {"Without Control Variate": 30.77439687502416, "With Control Variate": 33.08970066757973}, {"Without Control Variate": 37.97571043787818, "With Control Variate": 34.01445972942923}, {"Without Control Variate": 32.42262572412667, "With Control Variate": 33.60305748431488}, {"Without Control Variate": 36.080556019432436, "With Control Variate": 33.67320757204544}, {"Without Control Variate": 37.34622724630077, "With Control Variate": 32.14203379400035}, {"Without Control Variate": 31.978649255588117, "With Control Variate": 31.28699130921425}, {"Without Control Variate": 36.28831019493484, "With Control Variate": 33.70170038128322}, {"Without Control Variate": 34.03901407313906, "With Control Variate": 33.29895045350323}, {"Without Control Variate": 33.1136130229818, "With Control Variate": 32.53205481746299}, {"Without Control Variate": 37.49199156735712, "With Control Variate": 35.66082634449867}, {"Without Control Variate": 33.9668045097395, "With Control Variate": 33.444839841464436}, {"Without Control Variate": 38.64821919465603, "With Control Variate": 35.278311034491466}, {"Without Control Variate": 34.55910594906214, "With Control Variate": 34.17447241101918}, {"Without Control Variate": 32.43657266265261, "With Control Variate": 33.59298901763306}, {"Without Control Variate": 30.964262801240075, "With Control Variate": 32.822993279028125}, {"Without Control Variate": 38.618612123051534, "With Control Variate": 33.595162103589}, {"Without Control Variate": 36.883896890454146, "With Control Variate": 33.59838204870968}, {"Without Control Variate": 36.41915158591698, "With Control Variate": 34.55296279603431}, {"Without Control Variate": 34.05531720982455, "With Control Variate": 33.32489172575911}, {"Without Control Variate": 38.57085273798827, "With Control Variate": 35.26776991261477}, {"Without Control Variate": 36.37677516583719, "With Control Variate": 32.50686057845565}, {"Without Control Variate": 38.38055198480323, "With Control Variate": 35.60946029574713}, {"Without Control Variate": 35.64340474370124, "With Control Variate": 32.84672917433622}, {"Without Control Variate": 36.28213647146293, "With Control Variate": 34.997957135989964}, {"Without Control Variate": 35.976765340556824, "With Control Variate": 35.33155249392921}, {"Without Control Variate": 36.326278870536946, "With Control Variate": 32.33800381474248}, {"Without Control Variate": 37.57120217062598, "With Control Variate": 34.15310209679571}, {"Without Control Variate": 34.841292001672535, "With Control Variate": 34.024642299921}, {"Without Control Variate": 40.91289037201469, "With Control Variate": 33.136741173560104}, {"Without Control Variate": 29.037458579520617, "With Control Variate": 32.55470563023791}, {"Without Control Variate": 34.48541817790693, "With Control Variate": 36.17308199015817}, {"Without Control Variate": 24.522055682774965, "With Control Variate": 31.02985121123706}, {"Without Control Variate": 33.54558271600972, "With Control Variate": 34.00612820287593}, {"Without Control Variate": 33.67091366331344, "With Control Variate": 31.00983887006412}, {"Without Control Variate": 33.99806726559409, "With Control Variate": 33.32566702675824}, {"Without Control Variate": 36.02510703774191, "With Control Variate": 34.690567758653906}, {"Without Control Variate": 33.49779699824384, "With Control Variate": 34.30681366689716}, {"Without Control Variate": 34.02095297017948, "With Control Variate": 32.174286592392114}, {"Without Control Variate": 31.23054737522261, "With Control Variate": 30.315378087311903}, {"Without Control Variate": 34.41357550468768, "With Control Variate": 34.30727719885329}, {"Without Control Variate": 30.983346745069166, "With Control Variate": 33.296029067217646}, {"Without Control Variate": 37.974562974128084, "With Control Variate": 34.32582919100141}, {"Without Control Variate": 29.354571691059, "With Control Variate": 32.274267320456595}, {"Without Control Variate": 32.133080441063804, "With Control Variate": 32.79930061683475}, {"Without Control Variate": 32.18557440149992, "With Control Variate": 34.56286740368031}, {"Without Control Variate": 36.7832458575032, "With Control Variate": 32.72586488318433}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 
@@ -13756,7 +13760,7 @@ Estimated American put Price with control variates: 33.714835846202895
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The variance of estimator without control vairates is:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">AmerP</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The variance of estimator without control vairates is:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">AmerP_CV</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The variance of estimator with control vairates is:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">AmerP_CV</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13773,8 +13777,8 @@ Estimated American put Price with control variates: 33.714835846202895
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The variance of estimator without control vairates is: 10.804320217336894
-The variance of estimator without control vairates is: 1.876716613095124
+<pre>The variance of estimator without control vairates is: 8.73512228547913
+The variance of estimator with control vairates is: 1.620916685766735
 </pre>
 </div>
 </div>
@@ -13786,7 +13790,7 @@ The variance of estimator without control vairates is: 1.876716613095124
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see that the estimator without control variates have greater mean and larger confidence interval (black bar in the first plot). After calculating the variance of each estimator, we observe that the variance of estimator computed with control variates is much smaller than that of the other estimator. Thus, we should use control variates to estimate the price of American put options.</p>
+<p>We can see that the estimator without control variates has greater mean and larger confidence interval (black bar in the first plot). After calculating the variance of each estimator, we observe that the variance of estimator computed with control variates is much smaller than that of the other one. Thus, we should use control variates to estimate the price of American put options.</p>
 
 </div>
 </div>
